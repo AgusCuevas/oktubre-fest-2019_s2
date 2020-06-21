@@ -1,0 +1,187 @@
+import Carpas.*
+import Personas.*
+import MarcasYJarras.*
+
+
+describe "oktubreFest" {
+
+	const corona = new CervezaRubia(lupulo = 10, paisDeFabricacion = "Alemania", graduacion = 5)
+	const hofbrau  = new CervezaNegra(lupulo = 15, paisDeFabricacion = "Alemania", graduacionReglamentaria = 5)
+	const guiness = new CervezaRoja(lupulo = 5, paisDeFabricacion = "Republica Checa",  graduacionReglamentaria = 6)
+	const quilmes = new CervezaRubia(lupulo = 7, paisDeFabricacion = "Argentina", graduacion = 4)
+	const petrus = new CervezaNegra(lupulo = 10, paisDeFabricacion = "Belgica",  graduacionReglamentaria = 3)
+	
+	const jarraCorona1L = new Jarras(capacidadLitros = 1, marca = corona)
+	const jarraCorona2L = new Jarras(capacidadLitros = 2, marca = corona)
+	
+	const jarraHofbrau1L = new Jarras(capacidadLitros = 1, marca = hofbrau)
+	const jarraHofbrau2L = new Jarras(capacidadLitros = 2, marca = hofbrau)
+	
+	const jarraGuiness1L = new Jarras(capacidadLitros = 1, marca = guiness)
+	const jarraGuiness2L = new Jarras(capacidadLitros = 2, marca = guiness)
+	
+	const jarraQuilmes1L = new Jarras(capacidadLitros = 1, marca = quilmes)
+	const jarraQuilmes2L = new Jarras(capacidadLitros = 2, marca = quilmes)
+	
+	const jarraPetrus1L = new Jarras(capacidadLitros = 1, marca = petrus)
+	const jarraPetrus2L = new Jarras(capacidadLitros = 2, marca = petrus)
+	
+	const jose =    new Belgas(peso = 70, gustaMusicaTradicional = true, nivelDeAguante = 10, jarrasQueCompro = [jarraCorona2L, jarraCorona1L, jarraCorona1L])
+	const hernan =  new Belgas(peso = 80, gustaMusicaTradicional = false, nivelDeAguante = 6, jarrasQueCompro = [jarraCorona2L, jarraQuilmes1L])
+	const juan =    new Belgas(peso = 120, gustaMusicaTradicional = true, nivelDeAguante = 20, jarrasQueCompro = [jarraCorona2L, jarraQuilmes1L, jarraHofbrau2L])
+	
+	const agustin = new Checos(peso = 86, gustaMusicaTradicional = false, nivelDeAguante = 18, jarrasQueCompro = [jarraCorona2L])
+	const adrian =  new Checos(peso = 75, gustaMusicaTradicional = true, nivelDeAguante = 30, jarrasQueCompro = [jarraPetrus2L, jarraQuilmes1L])
+	const paola =   new Checos(peso = 78, gustaMusicaTradicional = false, nivelDeAguante = 50, jarrasQueCompro = [jarraQuilmes1L, jarraQuilmes1L, jarraQuilmes1L])
+	
+	const analia =  new Alemanes(peso = 102, gustaMusicaTradicional = true, nivelDeAguante = 30, jarrasQueCompro = [jarraCorona2L, jarraQuilmes1L])
+	const mariela = new Alemanes(peso = 72, gustaMusicaTradicional = false, nivelDeAguante = 25, jarrasQueCompro = [jarraPetrus2L, jarraCorona2L])
+	const lucas =   new Alemanes(peso = 90, gustaMusicaTradicional = true, nivelDeAguante = 3, jarrasQueCompro = [jarraCorona1L, jarraHofbrau1L, jarraGuiness1L, jarraQuilmes1L, jarraPetrus1L])
+
+	const pedro =    new Belgas(peso = 70, gustaMusicaTradicional = true, nivelDeAguante = 10, jarrasQueCompro = [])	
+	
+	const carpaGrande = new CarpasCerveceras(genteAdmitida = 10, marca = corona, genteDentro =[])
+	const carpaMediana = new CarpasCerveceras(genteAdmitida = 5, marca = guiness, genteDentro =[])
+	const carpaPequenia = new CarpasCerveceras(genteAdmitida = 2, marca = petrus, genteDentro =[])
+	
+	fixture {
+		jose.entrarALaCarpa(carpaGrande)
+		mariela.entrarALaCarpa(carpaMediana)
+		lucas.entrarALaCarpa(carpaPequenia)
+		hernan.entrarALaCarpa(carpaGrande)
+		analia.entrarALaCarpa(carpaMediana)
+		juan.entrarALaCarpa(carpaPequenia)
+		agustin.entrarALaCarpa(carpaGrande)
+		paola.entrarALaCarpa(carpaMediana)
+		adrian.entrarALaCarpa(carpaPequenia)
+		pedro.entrarALaCarpa(carpaGrande)
+		carpaGrande.servirUnaJarra(pedro, jarraGuiness1L)	
+		carpaGrande.servirUnaJarra(pedro, jarraGuiness1L)	
+		carpaGrande.servirUnaJarra(pedro, jarraGuiness1L)	
+		carpaGrande.servirUnaJarra(pedro, jarraGuiness1L)	
+			
+	}
+	
+	test "cervezas"{
+		assert.equals(0.05, corona.alchoholPorLitro())
+		assert.equals(0, hofbrau.alchoholPorLitro())
+		assert.equals(0, guiness.alchoholPorLitro())
+		assert.equals(0.04, quilmes.alchoholPorLitro())
+		assert.equals(0, petrus.alchoholPorLitro())
+	}
+	
+	test "Jarras"{
+		assert.equals(0.05, jarraCorona1L.contenidoDeAlchohol())
+		assert.equals(0.10, jarraCorona2L.contenidoDeAlchohol())
+		
+		assert.equals(0, jarraHofbrau1L.contenidoDeAlchohol())
+		assert.equals(0, jarraHofbrau2L.contenidoDeAlchohol())
+		
+		assert.equals(0, jarraGuiness1L.contenidoDeAlchohol())
+		assert.equals(0, jarraGuiness2L.contenidoDeAlchohol())
+		
+		assert.equals(0.04, jarraQuilmes1L.contenidoDeAlchohol())
+		assert.equals(0.08, jarraQuilmes2L.contenidoDeAlchohol())
+		
+		assert.equals(0, jarraPetrus1L.contenidoDeAlchohol())
+		assert.equals(0, jarraPetrus2L.contenidoDeAlchohol())
+	}
+	
+	test "PersonasBelgas"{
+		assert.equals(3, jose.jarrasCompradas())
+		assert.equals(0.2 , jose.totalDeAlchohol())
+		assert.equals(true, jose.estaEbria())
+		assert.equals(true, jose.leGusta(corona)) 
+		assert.equals(true, jose.quiereEntrarALaCarpa(carpaGrande))
+		assert.equals(false, jose.puedeEntrar(carpaGrande))
+		assert.equals(false, jose.esPatriota())
+				
+		assert.equals(2, hernan.jarrasCompradas())
+		assert.equals(0.14, hernan.totalDeAlchohol())
+		assert.equals(true, hernan.estaEbria())
+		assert.equals(true, hernan.leGusta(hofbrau)) 
+		assert.equals(false, hernan.quiereEntrarALaCarpa(carpaMediana))
+		assert.equals(false, hernan.puedeEntrar(carpaMediana)) 
+		assert.equals(false, hernan.esPatriota())
+		
+		assert.equals(3, juan.jarrasCompradas())
+		assert.equals(0.14, juan.totalDeAlchohol())
+		assert.equals(false, juan.estaEbria())
+		assert.equals(true, juan.leGusta(guiness)) 
+		assert.equals(true, juan.quiereEntrarALaCarpa(carpaPequenia))
+		assert.equals(true, juan.puedeEntrar(carpaPequenia)) 
+		assert.equals(false, juan.esPatriota())
+	}
+	
+	test "PersonasChecas"{
+		assert.equals(1, agustin.jarrasCompradas())
+		assert.equals(0.10, agustin.totalDeAlchohol())
+		assert.equals(false, agustin.estaEbria()) 
+		assert.equals(false, agustin.leGusta(quilmes)) 
+		assert.equals(false, agustin.quiereEntrarALaCarpa(carpaGrande)) 
+		assert.equals(false, agustin.puedeEntrar(carpaGrande))
+		assert.equals(false, agustin.esPatriota()) 
+		
+		
+		assert.equals(2, adrian.jarrasCompradas())
+		assert.equals(0.04, adrian.totalDeAlchohol())
+		assert.equals(false, adrian.estaEbria())
+		assert.equals(false, adrian.leGusta(petrus))
+		assert.equals(false, adrian.quiereEntrarALaCarpa(carpaMediana))
+		assert.equals(false, adrian.puedeEntrar(carpaMediana))
+		assert.equals(false, adrian.esPatriota())
+		
+		assert.equals(3, paola.jarrasCompradas())
+		assert.equals(0.12, paola.totalDeAlchohol())
+		assert.equals(false, paola.estaEbria())
+		assert.equals(false, paola.leGusta(corona))
+		assert.equals(false, paola.quiereEntrarALaCarpa(carpaPequenia))
+		assert.equals(false, paola.puedeEntrar(carpaPequenia))
+		assert.equals(false, paola.esPatriota())
+		
+	}
+	
+	test "PersonasAlemanas"{
+		assert.equals(2, analia.jarrasCompradas())
+		assert.equals(0.14, analia.totalDeAlchohol())
+		assert.equals(false, analia.estaEbria())
+		assert.equals(true, analia.leGusta(hofbrau))
+		assert.equals(false, analia.quiereEntrarALaCarpa(carpaGrande))
+		assert.equals(false, analia.puedeEntrar(carpaGrande))
+		assert.equals(false, analia.esPatriota())
+		
+		assert.equals(2, mariela.jarrasCompradas())
+		assert.equals(0.1, mariela.totalDeAlchohol())
+		assert.equals(false, mariela.estaEbria())
+		assert.equals(true, mariela.leGusta(guiness))
+		assert.equals(false, mariela.quiereEntrarALaCarpa(carpaMediana))
+		assert.equals(false, mariela.puedeEntrar(carpaMediana))
+		assert.equals(false, mariela.esPatriota())
+		
+		assert.equals(5, lucas.jarrasCompradas())
+		assert.equals(0.09, lucas.totalDeAlchohol())
+		assert.equals(true, lucas.estaEbria())
+		assert.equals(true, lucas.leGusta(quilmes))
+		assert.equals(false, lucas.quiereEntrarALaCarpa(carpaPequenia))
+		assert.equals(false, lucas.puedeEntrar(carpaPequenia))
+		assert.equals(false, lucas.esPatriota())
+	}
+	
+	test "Carpas"{
+		assert.equals(1, carpaGrande.cantidadDeGente())
+		assert.equals(true, carpaGrande.admitePasar(analia))
+		assert.equals(0, carpaGrande.ebriosEmpedernidos())
+		
+		assert.equals(1, carpaMediana.cantidadDeGente())
+		assert.equals(true, carpaMediana.admitePasar(juan))
+		assert.equals(1, carpaMediana.ebriosEmpedernidos())
+		
+		assert.equals(1, carpaPequenia.cantidadDeGente())
+		assert.equals(true, carpaPequenia.admitePasar(adrian))
+		assert.equals(1, carpaPequenia.ebriosEmpedernidos())
+	}
+	
+	test "Servir jarras"{
+		assert.equals(4, pedro.jarrasCompradas())
+	}
+}
