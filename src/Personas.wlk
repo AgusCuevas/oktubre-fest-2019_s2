@@ -46,8 +46,11 @@ class Personas{
 	}
 	
 	method entrarALaCarpa(carpa){
-		if (carpa.admitePasar(self) and  self.puedeEntrar(carpa)){
+		if (carpa.admitePasar(self) and self.puedeEntrar(carpa)){
 			carpa.entrarALaCarpa(self)
+		}
+		else {
+			throw new Exception(message = "No pasas!")
 		}
 
 	}

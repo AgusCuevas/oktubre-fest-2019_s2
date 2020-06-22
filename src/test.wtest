@@ -45,15 +45,19 @@ describe "oktubreFest" {
 	const carpaPequenia = new CarpasCerveceras(genteAdmitida = 2, marca = petrus, genteDentro =[])
 	
 	fixture {
-		jose.entrarALaCarpa(carpaGrande)
-		mariela.entrarALaCarpa(carpaMediana)
-		lucas.entrarALaCarpa(carpaPequenia)
-		hernan.entrarALaCarpa(carpaGrande)
-		analia.entrarALaCarpa(carpaMediana)
-		juan.entrarALaCarpa(carpaPequenia)
-		agustin.entrarALaCarpa(carpaGrande)
-		paola.entrarALaCarpa(carpaMediana)
-		adrian.entrarALaCarpa(carpaPequenia)
+		
+		//jose.entrarALaCarpa(carpaGrande)
+		//hernan.entrarALaCarpa(carpaMediana)
+		juan.entrarALaCarpa(carpaPequenia) 
+		
+		//agustin.entrarALaCarpa(carpaGrande)
+		//paola.entrarALaCarpa(carpaMediana)
+		//adrian.entrarALaCarpa(carpaPequenia)
+		
+		//analia.entrarALaCarpa(carpaGrande)
+		//mariela.entrarALaCarpa(carpaMediana)
+		//lucas.entrarALaCarpa(carpaPequenia)
+		
 		pedro.entrarALaCarpa(carpaGrande)
 		carpaGrande.servirUnaJarra(pedro, jarraGuiness1L)	
 		carpaGrande.servirUnaJarra(pedro, jarraGuiness1L)	
@@ -172,9 +176,9 @@ describe "oktubreFest" {
 		assert.equals(true, carpaGrande.admitePasar(analia))
 		assert.equals(0, carpaGrande.ebriosEmpedernidos())
 		
-		assert.equals(1, carpaMediana.cantidadDeGente())
+		assert.equals(0, carpaMediana.cantidadDeGente())
 		assert.equals(true, carpaMediana.admitePasar(juan))
-		assert.equals(1, carpaMediana.ebriosEmpedernidos())
+		assert.equals(0, carpaMediana.ebriosEmpedernidos())
 		
 		assert.equals(1, carpaPequenia.cantidadDeGente())
 		assert.equals(true, carpaPequenia.admitePasar(adrian))
